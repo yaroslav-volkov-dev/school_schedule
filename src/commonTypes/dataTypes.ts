@@ -1,11 +1,14 @@
-import { FixedLengthArray, PossibleSubjectsCount } from './utility';
+import { days } from '../constants';
 
-type Days =
-  'monday'
-  | 'tuesday'
-  | 'wednesday'
-  | 'thursday'
-  | 'friday';
+type Classes =
+  '5A' | '5B' | '5C' |
+  '6A' | '6B' | '6C' |
+  '7A' | '7B' | '7C' |
+  '8A' | '8B' | '8C' |
+  '9A' | '9B' | '9C' |
+  '10A' | '10B' | '10C';
+
+type Days = typeof days[number]
 
 type TimeSlots =
   '08:30-09:15'
@@ -19,22 +22,47 @@ type TimeSlots =
 type TeacherWorkStatus = 'free' | 'busy';
 
 type WorkingDaySchedule = {
-  [timeslot: TimeSlots]: TeacherWorkStatus;
+  [timeslot in TimeSlots]: TeacherWorkStatus;
 }
 
-type Teacher<TSubjCount extends PossibleSubjectsCount> = {
+type TeacherWorkingSchedule = {
+  [day in Days]: WorkingDaySchedule;
+}
+
+type Subject = {
   id: string;
   name: string;
-  subjects: FixedLengthArray<string, TSubjCount>;
+}
+
+type Teacher = {
+  id: string;
+  name: string;
+  subjects: string[];
+  workingSchedule: TeacherWorkingSchedule;
 };
 
 type Lesson = {
-  id: string;
-  name: string;
-  isDivisible: boolean;
+  timeslot: TimeSlots;
+  //id for subject
+  subject: Subject | Subject[];
+  //id of teacher
+  teacher: Teacher;
+  classRoomNumber: number;
+  isValid: boolean;
+} | null;
+
+
+//should have vertical structure
+type ClassDaySchedule = Lesson[];
+
+type SchoolDaySchedule = {
+  [_class in Classes]: ClassDaySchedule;
 }
 
 export type {
-  Teacher
+  Teacher,
+  WorkingDaySchedule,
+  Days,
+  TeacherWorkingSchedule,
+  Subject,
 };
-
