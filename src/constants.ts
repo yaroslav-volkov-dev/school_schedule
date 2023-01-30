@@ -1,6 +1,6 @@
-import { nanoid } from 'nanoid';
 import {
   SchoolWeekSchedule,
+  Lesson, Schedule,
   Subject,
   Teacher,
   TeacherWorkingSchedule,
@@ -8,6 +8,7 @@ import {
 } from './commonTypes/dataTypes';
 
 export const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] as const;
+export const classes = ['5A', '5B', '5C', '6A', '6B', '6C', '7A', '7B', '7C', '8A', '8B', '8C', '9A', '9B', '9C', '10A', '10B', '10C'] as const;
 
 export const classRooms = [
   101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
@@ -16,15 +17,38 @@ export const classRooms = [
   401, 402, 403, 404, 405, 406, 407, 408, 409, 410,
 ];
 
-export const defaultWorkingDaySchedule: WorkingDaySchedule = {
-  '08:30-09:15': 'free',
-  '09:30-10:15': 'free',
-  '10:30-11:15': 'free',
-  '11:30-12:15': 'free',
-  '12:30-13:15': 'free',
-  '13:30-14:15': 'free',
-  '14:30-15:15': 'free',
-};
+export const subjects: Subject[] = [
+  {
+    id: 'ukr-mova',
+    name: 'Ukrainian Language'
+  },
+  {
+    id: 'ukr-lit',
+    name: 'Ukrainian Literature'
+  },
+  {
+    id: 'matematika',
+    name: 'Math',
+  },
+  {
+    id: 'geometria',
+    name: 'Geometry'
+  },
+  {
+    id: 'trigonometria',
+    name: 'Trigonometry'
+  },
+  {
+    id: 'fizra',
+    name: 'Physical Culture'
+  },
+  {
+    id: 'trudy',
+    name: 'Labor Education'
+  }
+];
+
+export const defaultWorkingDaySchedule: WorkingDaySchedule = ['free', 'free', 'free', 'free', 'free', 'free', 'free'];
 
 const createDefaultSchedule = (): TeacherWorkingSchedule => {
   return days.reduce<TeacherWorkingSchedule>((acc, day) => {
@@ -33,159 +57,94 @@ const createDefaultSchedule = (): TeacherWorkingSchedule => {
   }, {} as TeacherWorkingSchedule);
 };
 
-const getPossibleSubjects = (teachers: Teacher[]) => {
-  const uniqueSubjectNames = new Set;
-
-  return teachers.reduce<Subject[]>((acc, { subjects }) => {
-    subjects.forEach((subject) => {
-      if (!uniqueSubjectNames.has(subject.name)) {
-        acc = [...acc, subject];
-      }
-      uniqueSubjectNames.add(subject.name);
-    });
-    return acc;
-  }, []);
-};
 
 export const teachers: Teacher[] = [
   {
-    id: nanoid(),
+    id: 'vasya',
     name: 'Vasya',
-    subjects: [
-      {
-        id: nanoid(),
-        name: 'Ukrainian Language',
-        isDivisible: false
-      },
-      {
-        id: nanoid(),
-        name: 'Ukrainian Literature',
-        isDivisible: false,
-      }],
+    subjects: ['urk-mova', 'ukr-lit'],
     workingSchedule: createDefaultSchedule(),
   },
   {
-    id: nanoid(),
+    id: 'serega',
     name: 'Serega',
-    subjects: [
-      {
-        id: nanoid(),
-        name: 'Math',
-        isDivisible: false,
-      },
-      {
-        id: nanoid(),
-        name: 'Mathematical Analysis',
-        isDivisible: false,
-      },
-      {
-        id: nanoid(),
-        name: 'Trigonometry',
-        isDivisible: false,
-      },
-      {
-        id: nanoid(),
-        name: 'Geometry',
-        isDivisible: false,
-      },
-      {
-        id: nanoid(),
-        name: 'Algebra',
-        isDivisible: false,
-      }
-    ],
+    subjects: ['matematika', 'geometria', 'trigonometria'],
     workingSchedule: createDefaultSchedule(),
   },
   {
-    id: nanoid(),
+    id: 'ivan',
     name: 'Ivan',
-    subjects: [
-      {
-        id: nanoid(),
-        name: 'Labor education',
-        isDivisible: true,
-      },
-      {
-        id: nanoid(),
-        name: 'Physical Culture',
-        isDivisible: false,
-      }
-    ],
+    subjects: ['trudy', 'fizra'],
     workingSchedule: createDefaultSchedule(),
   },
+];
+
+const dayLessons: Lesson[] = [
   {
-    id: nanoid(),
-    name: 'Dima',
-    subjects: [
-      {
-        id: nanoid(),
-        name: 'Labor education',
-        isDivisible: true,
-      },
-      {
-        id: nanoid(),
-        name: 'Computer science',
-        isDivisible: true,
-      },
-    ],
-    workingSchedule: createDefaultSchedule(),
+    teacher: 'ivan',
+    subject: 'fizra',
+    classRoomNumber: 101,
+    isValid: true,
+  },
+  {
+    teacher: 'serega',
+    subject: 'matematika',
+    classRoomNumber: 102,
+    isValid: true,
+  },
+  {
+    teacher: 'serega',
+    subject: 'matematika',
+    classRoomNumber: 102,
+    isValid: true,
+  },
+  {
+    teacher: 'vasya',
+    subject: 'urk-mova',
+    classRoomNumber: 103,
+    isValid: true,
+  },
+  {
+    teacher: 'vasya',
+    subject: 'urk-mova',
+    classRoomNumber: 103,
+    isValid: true,
+  },
+  {
+    teacher: 'ivan',
+    subject: 'trudy',
+    classRoomNumber: 104,
+    isValid: true
+  },
+  {
+    teacher: 'ivan',
+    subject: 'trudy',
+    classRoomNumber: 104,
+    isValid: true
   }
 ];
 
-const subjects = getPossibleSubjects(teachers);
+export const classWeekTestSchedule: SchoolWeekSchedule = [
+  dayLessons, dayLessons, dayLessons, dayLessons, dayLessons
+];
 
-export const schedule: SchoolWeekSchedule = {
-  monday: {
-    '5A': {
-      lessons: [
-        {
-          teacher: teachers[0],
-          classRoomNumber: 101,
-          subject: subjects[0],
-          timeslot: '08:30-09:15',
-        },
-        {
-          teacher: teachers[1],
-          classRoomNumber: 102,
-          subject: subjects[1],
-          timeslot: '09:30-10:15'
-        }
-      ]
-    },
-    '5B': {
-      lessons: [
-        {
-          teacher: teachers[0],
-          classRoomNumber: 103,
-          subject: subjects[0],
-          timeslot: '08:30-09:15',
-        },
-        {
-          teacher: teachers[1],
-          classRoomNumber: 104,
-          subject: subjects[1],
-          timeslot: '09:30-10:15'
-        }
-      ]
-    },
-    '5C': {
-      lessons: [
-        {
-          teacher: teachers[0],
-          classRoomNumber: 105,
-          subject: subjects[0],
-          timeslot: '08:30-09:15',
-        },
-        {
-          teacher: teachers[1],
-          classRoomNumber: 106,
-          subject: subjects[1],
-          timeslot: '09:30-10:15'
-        }
-      ]
-    }
-  },
-  tuesday: {
-
-  }
+export const schedule: Schedule = {
+  '5A': classWeekTestSchedule,
+  '5B': classWeekTestSchedule,
+  '5C': classWeekTestSchedule,
+  '6A': classWeekTestSchedule,
+  '6B': classWeekTestSchedule,
+  '6C': classWeekTestSchedule,
+  '7A': classWeekTestSchedule,
+  '7B': classWeekTestSchedule,
+  '7C': classWeekTestSchedule,
+  '8A': classWeekTestSchedule,
+  '8B': classWeekTestSchedule,
+  '8C': classWeekTestSchedule,
+  '9A': classWeekTestSchedule,
+  '9B': classWeekTestSchedule,
+  '9C': classWeekTestSchedule,
+  '10A': classWeekTestSchedule,
+  '10B': classWeekTestSchedule,
+  '10C': classWeekTestSchedule,
 };

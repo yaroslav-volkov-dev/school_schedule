@@ -1,12 +1,14 @@
 import './App.css';
-import { Subject, Teacher } from './commonTypes/dataTypes';
-import { teachers } from './constants';
+import { schedule } from './constants';
+import { SchoolSchedule } from 'components';
 
 
 const App = () => {
-  console.log(teachers);
   return (
     <div className="App">
+      <div className={'container mx-auto px-20 py-2 h-screen'}>
+        <SchoolSchedule />
+      </div>
     </div>
   );
 };

@@ -1,12 +1,7 @@
-import { days } from '../constants';
+import { classes, days } from '../constants';
+import { FixedLengthArray } from './utility';
 
-type Classes =
-  '5A' | '5B' | '5C' |
-  '6A' | '6B' | '6C' |
-  '7A' | '7B' | '7C' |
-  '8A' | '8B' | '8C' |
-  '9A' | '9B' | '9C' |
-  '10A' | '10B' | '10C';
+type Classes = typeof classes[number];
 
 type Days = typeof days[number]
 
@@ -21,13 +16,11 @@ type TimeSlots =
 
 type TeacherWorkStatus = 'free' | 'busy';
 
-type WorkingDaySchedule = {
-  [timeslot in TimeSlots]: TeacherWorkStatus;
-}
-
 type TeacherWorkingSchedule = {
   [day in Days]: WorkingDaySchedule;
 }
+
+type WorkingDaySchedule = FixedLengthArray<TeacherWorkStatus, 7>;
 
 type Subject = {
   id: string;
@@ -42,22 +35,19 @@ type Teacher = {
 };
 
 type Lesson = {
-  timeslot: TimeSlots;
-  //id for subject
-  subject: Subject | Subject[];
-  //id of teacher
-  teacher: Teacher;
+  subject: string;
+  teacher: string;
   classRoomNumber: number;
   isValid: boolean;
 } | null;
 
+type SchoolDaySchedule = Lesson[];
 
-//should have vertical structure
-type ClassDaySchedule = Lesson[];
+type SchoolWeekSchedule = FixedLengthArray<SchoolDaySchedule, 5>;
 
-type SchoolDaySchedule = {
-  [_class in Classes]: ClassDaySchedule;
-}
+type Schedule = {
+  [_class in Classes]: SchoolWeekSchedule;
+};
 
 export type {
   Teacher,
@@ -65,4 +55,7 @@ export type {
   Days,
   TeacherWorkingSchedule,
   Subject,
+  Lesson,
+  SchoolWeekSchedule,
+  Schedule
 };

@@ -1,0 +1,1 @@
+export { SchoolSchedule } from './SchoolSchedule';

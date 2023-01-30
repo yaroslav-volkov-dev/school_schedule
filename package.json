@@ -34,7 +34,9 @@
       "no-unused-vars": "warn"
     }
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tailwind": "^4.0.0"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
