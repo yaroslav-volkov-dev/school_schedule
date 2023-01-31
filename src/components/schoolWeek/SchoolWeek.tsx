@@ -1,13 +1,13 @@
-import { WithChildren } from 'commonTypes/utility';
+import {WithChildren} from 'commonTypes/utility';
 
 type SchoolWeekProps = {
   classID: string;
 }
 
-export const SchoolWeek = ({ classID, children }: WithChildren<SchoolWeekProps>) => {
+export const SchoolWeek = ({classID, children}: WithChildren<SchoolWeekProps>) => {
   return (
-    <div className={'h-full w-72 flex flex-col gap-y-3 shrink-0'}>
-      <div className={'h-10 bg-blue shrink-0'}>{classID}</div>
+    <div className={'h-full w-72 flex flex-col shrink-0 row-span-2'}>
+      <div className={'h-10 bg-blue shrink-0 sticky top-0 flex justify-center items-center'}>{classID}</div>
       {children}
     </div>
   );
