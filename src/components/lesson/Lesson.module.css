@@ -2,20 +2,29 @@
     display: flex;
     align-items: center;
     font-size: 18px;
-    cursor: pointer;
+    cursor: grab;
 }
 
 .lessonName, .classRoomNumber {
+    height: 40px;
     border: 1px solid black;
     border-radius: 4px;
-    padding: 5px;
-    background-color: #cdf4ff;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
 }
 
 .lessonName {
     flex-grow: 1;
 }
 
+.lessonNumber {
+    margin-right: 4px;
+}
+
 .classRoomNumber {
+    width: 44px;
     margin-left: 8px;
+    justify-content: center;
 }

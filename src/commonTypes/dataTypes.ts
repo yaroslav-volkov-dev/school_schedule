@@ -35,7 +35,7 @@ type Teacher = {
 };
 
 type Lesson = {
-  subject: string;
+  subject: Subject;
   teacher: string;
   classRoomNumber: number;
   isValid: boolean;
@@ -57,5 +57,6 @@ export type {
   Subject,
   Lesson,
   SchoolWeekSchedule,
-  Schedule
+  Schedule,
+  SchoolDaySchedule
 };

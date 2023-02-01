@@ -1,17 +1,17 @@
-import { ReactNode } from 'react';
 import styles from './Lesson.module.css';
 
 type LessonProps = {
+  index: number;
+  subjectName?: string;
   classRoomNumber?: string;
-  children?: ReactNode;
-  className?: string;
 }
 
-export const Lesson = ({ children, className, classRoomNumber = '-' }: LessonProps) => {
+export const Lesson = ({ index, subjectName = '', classRoomNumber = '-' }: LessonProps) => {
   return (
     <div className={styles.lesson}>
       <div className={styles.lessonName}>
-        {children}
+        <span className={styles.lessonNumber}>{`${index + 1}.`}</span>
+        <span>{subjectName}</span>
       </div>
       <div className={styles.classRoomNumber}>{classRoomNumber}</div>
     </div>

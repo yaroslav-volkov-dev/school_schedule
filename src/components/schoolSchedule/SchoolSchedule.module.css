@@ -9,6 +9,10 @@
     display: grid;
 }
 
+.schoolDayWrapper, .classIdsWrapper, .daysWrapper {
+    gap: var(--table-spacing);
+}
+
 .scheduleWrapper {
     width: 100%;
     height: 100vh;
@@ -19,43 +23,52 @@
     position: relative;
 }
 
-.schoolDayWrapper, .classIdsWrapper, .daysWrapper {
-    gap: var(--table-spacing);
-    padding: var(--table-spacing);
-}
-
-.daysWrapper, .plug {
-    background: #1537ab;
-    position: sticky;
-    left: 0;
-    z-index: 2;
+.plug, .classIdsWrapper {
+    color: white;
+    background-color: #bf88cf;
 }
 
 .classIdsWrapper, .daysWrapper {
     font-size: 20px;
-    color: white;
 }
 
 .daysWrapper, .schoolDayWrapper {
     grid-template-rows: repeat(5, var(--table-item-height));
 }
 
-.classIdsWrapper {
-    grid-auto-flow: column;
-    grid-auto-columns: var(--table-item-width);
-    justify-items: center;
-    background-color: #4e60ea;
+.daysWrapper {
+    position: sticky;
+    left: 0;
+}
+
+.plug {
     position: sticky;
     top: 0;
     z-index: 1;
 }
 
-.daysWrapper {
+.classIdsWrapper {
+    grid-auto-flow: column;
+    grid-auto-columns: var(--table-item-width);
     justify-items: center;
-    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: var(--table-spacing);
+}
+
+.daysWrapper {
+    padding: var(--table-spacing) 0;
 }
 
 .schoolDayWrapper {
     grid-auto-columns: var(--table-item-width);
     grid-auto-flow: column;
+    padding: var(--table-spacing);
+}
+
+.dayMarker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

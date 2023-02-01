@@ -1,7 +1,10 @@
 :root {
     --table-spacing: 10px;
     --table-item-width: 320px;
-    --table-item-height: 350px;
+    --table-item-height: 370px;
+    --color-light-red: #ffbcbc;
+    --color-light-blue: #e1e2ff;
+    --color-light-green: #e4ffe9;
 }
 
 * {
@@ -44,4 +47,12 @@ body {
 
 .styled-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.4);
+}
+
+.day-green {
+    background-color: var(--color-light-green);
+}
+
+.day-blue {
+    background-color: var(--color-light-blue);
 }

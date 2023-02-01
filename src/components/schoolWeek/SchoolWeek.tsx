@@ -9,7 +9,12 @@ export const SchoolWeek = ({ classWeekSchedule }: SchoolWeekProps) => {
 
   return (
     <>
-      {classWeekSchedule.map((lessons) => <SchoolDay lessons={lessons} />)}
+      {classWeekSchedule.map((lessons, index) => (
+        <SchoolDay
+          lessons={lessons}
+          backgroundColor={index % 2 ? 'blue' : 'green'}
+        />
+      ))}
     </>
   );
 };

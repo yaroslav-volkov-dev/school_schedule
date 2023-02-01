@@ -1,6 +1,6 @@
 import {
-  Lesson,
   Schedule,
+  SchoolDaySchedule,
   SchoolWeekSchedule,
   Subject,
   Teacher,
@@ -21,11 +21,11 @@ export const classRooms = [
 export const subjects: Subject[] = [
   {
     id: 'ukr-mova',
-    name: 'Ukrainian Language'
+    name: 'Ukrainian language'
   },
   {
     id: 'ukr-lit',
-    name: 'Ukrainian Literature'
+    name: 'Ukrainian literature'
   },
   {
     id: 'matematika',
@@ -41,11 +41,27 @@ export const subjects: Subject[] = [
   },
   {
     id: 'fizra',
-    name: 'Physical Culture'
+    name: 'Physical culture'
   },
   {
     id: 'trudy',
-    name: 'Labor Education'
+    name: 'Labor education'
+  },
+  {
+    id: 'biologia',
+    name: 'Biology',
+  },
+  {
+    id: 'geografia',
+    name: 'Geography'
+  },
+  {
+    id: 'malyuvannya',
+    name: 'Drawing',
+  },
+  {
+    id: 'muzyka',
+    name: 'Music art'
   }
 ];
 
@@ -69,7 +85,7 @@ export const teachers: Teacher[] = [
   {
     id: 'serega',
     name: 'Serega',
-    subjects: ['matematika', 'geometria', 'trigonometria'],
+    subjects: ['matematika', 'geometria', 'trigonometria', 'algebra', 'mat-analiz'],
     workingSchedule: createDefaultSchedule(),
   },
   {
@@ -78,55 +94,98 @@ export const teachers: Teacher[] = [
     subjects: ['trudy', 'fizra'],
     workingSchedule: createDefaultSchedule(),
   },
+  {
+    id: 'maria-ivanovna',
+    name: 'Maria Ivanovna',
+    subjects: ['istoria-ukrainy', 'istoria-vsesvitu'],
+    workingSchedule: createDefaultSchedule(),
+  },
+  {
+    id: 'kirill',
+    name: 'Kirill',
+    subjects: ['matematika', 'mat-analiz', 'algebra'],
+    workingSchedule: createDefaultSchedule(),
+  },
+  {
+    id: 'anton',
+    name: 'Anton',
+    subjects: ['geometria', 'trigonometria'],
+    workingSchedule: createDefaultSchedule(),
+  },
+  {
+    id: 'evkakiy',
+    name: 'Evkakiy',
+    subjects: ['dpu', 'trudy'],
+    workingSchedule: createDefaultSchedule(),
+  },
+  {
+    id: 'viktor',
+    name: 'Viktor',
+    subjects: ['biologia', 'geografia'],
+    workingSchedule: createDefaultSchedule(),
+  },
+  {
+    id: 'elena-petrovna',
+    name: 'Elena Petrovna',
+    subjects: ['malyuvannya', 'muzyka'],
+    workingSchedule: createDefaultSchedule(),
+  }
 ];
 
-const dayLessons: Lesson[] = [
+const dayLessons: SchoolDaySchedule = [
   {
     teacher: 'ivan',
-    subject: 'fizra',
+    subject: {
+      id: 'fizra',
+      name: 'Physical culture'
+    },
     classRoomNumber: 101,
     isValid: true,
   },
   {
     teacher: 'serega',
-    subject: 'matematika',
+    subject: {
+      id: 'matematika',
+      name: 'Math'
+    },
     classRoomNumber: 102,
     isValid: true,
   },
   {
     teacher: 'serega',
-    subject: 'matematika',
+    subject: {
+      id: 'matematika',
+      name: 'Math'
+    },
     classRoomNumber: 102,
     isValid: true,
   },
   {
     teacher: 'vasya',
-    subject: 'urk-mova',
+    subject: {
+      id: 'ukr-mova',
+      name: 'Ukrainian language'
+    },
     classRoomNumber: 103,
     isValid: true,
   },
   {
     teacher: 'vasya',
-    subject: 'urk-mova',
+    subject: {
+      id: 'ukr-mova',
+      name: 'Ukrainian language'
+    },
     classRoomNumber: 103,
     isValid: true,
   },
-  {
-    teacher: 'ivan',
-    subject: 'trudy',
-    classRoomNumber: 104,
-    isValid: true
-  },
-  {
-    teacher: 'ivan',
-    subject: 'trudy',
-    classRoomNumber: 104,
-    isValid: true
-  }
+  null,
+  null
 ];
 
+const emptyDayLessons: SchoolDaySchedule = [null, null, null, null, null, null, null];
+
 export const classWeekTestSchedule: SchoolWeekSchedule = [
-  dayLessons, dayLessons, dayLessons, dayLessons, dayLessons
+  dayLessons, emptyDayLessons, emptyDayLessons, emptyDayLessons, emptyDayLessons
 ];
 
 export const schedule: Schedule = {
