@@ -1,6 +1,7 @@
 import {
+  Lesson,
+  Schedule,
   SchoolWeekSchedule,
-  Lesson, Schedule,
   Subject,
   Teacher,
   TeacherWorkingSchedule,

@@ -8,7 +8,8 @@
 .lessonName, .classRoomNumber {
     border: 1px solid black;
     border-radius: 4px;
-    padding: 4px;
+    padding: 5px;
+    background-color: #cdf4ff;
 }
 
 .lessonName {

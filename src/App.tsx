@@ -2,7 +2,7 @@ import { SchoolSchedule } from 'components';
 
 const App = () => {
   return (
-    <SchoolSchedule/>
+    <SchoolSchedule />
   );
 };
 

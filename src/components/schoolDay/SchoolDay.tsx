@@ -4,13 +4,12 @@ import styles from './SchoolDay.module.css';
 
 type SchoolDayProps = {
   lessons: Lesson[];
-  isLastClass: boolean;
   className?: string;
 };
 
-export const SchoolDay = ({ lessons, isLastClass }: SchoolDayProps) => {
+export const SchoolDay = ({ lessons }: SchoolDayProps) => {
   return (
-    <div className={`${styles.schoolDay} ${isLastClass ? styles.lastClass : ''}`}>
+    <div className={styles.schoolDay}>
       {lessons.map((item) => {
         if (item?.subject) {
           return (

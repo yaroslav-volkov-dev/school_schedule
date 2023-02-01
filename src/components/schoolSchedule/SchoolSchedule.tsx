@@ -4,32 +4,28 @@ import styles from './SchoolSchedule.module.css';
 
 
 export const SchoolSchedule = () => {
-  const data = Object.entries(schedule);
+  const classes = Object.keys(schedule);
+  const schoolDays = Object.values(schedule);
 
   return (
     <div className={styles.container}>
-      <div className={styles.scheduleWrapper}>
-        {data.map(([classID, classWeekSchedule], index, array) => {
-
-          if (index === 0) {
-            return (
-              <>
-                <div className={styles.plug} />
-                {days.map((day) => {
-                  return <div className={styles.dayMarker} key={day}>{day.slice(0, 3).toUpperCase()}</div>;
-                })}
-              </>
-            );
-          }
-          return (
-            <SchoolWeek
-              classID={classID}
-              isLastClass={index === array.length - 1}
-              classWeekSchedule={classWeekSchedule}
-              key={classID}
-            />
-          );
-        })}
+      <div className={`${styles.scheduleWrapper} styled-scrollbar`}>
+        <div className={styles.plug} />
+        <div className={styles.classIdsWrapper}>
+          {classes.map((classId) => <div>{classId}</div>)}
+        </div>
+        <div className={styles.daysWrapper}>
+          {days.map((day) => (
+            <div className={styles.dayMarker} key={day}>
+              {day.slice(0, 3).toUpperCase()}
+            </div>
+          ))}
+        </div>
+        <div className={styles.schoolDayWrapper}>
+          {schoolDays.map((classWeekSchedule) => (
+            <SchoolWeek classWeekSchedule={classWeekSchedule} />
+          ))}
+        </div>
       </div>
     </div>
   );

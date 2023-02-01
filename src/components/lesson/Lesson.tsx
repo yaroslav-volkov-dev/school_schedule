@@ -7,7 +7,7 @@ type LessonProps = {
   className?: string;
 }
 
-export const Lesson = ({children, className, classRoomNumber = '-'}: LessonProps) => {
+export const Lesson = ({ children, className, classRoomNumber = '-' }: LessonProps) => {
   return (
     <div className={styles.lesson}>
       <div className={styles.lessonName}>

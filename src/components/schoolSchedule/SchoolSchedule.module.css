@@ -5,47 +5,57 @@
     margin: 0 auto;
 }
 
+.scheduleWrapper, .classIdsWrapper, .daysWrapper, .schoolDayWrapper {
+    display: grid;
+}
+
 .scheduleWrapper {
     width: 100%;
     height: 100vh;
-    display: grid;
-    grid-template-columns: 70px;
-    grid-auto-columns: 300px;
-    grid-auto-flow: column;
+    grid-template-columns: 70px auto;
     grid-template-rows: auto repeat(5, auto);
     overflow: auto;
     border: 1px solid black;
+    position: relative;
 }
 
-.scheduleWrapper::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+.schoolDayWrapper, .classIdsWrapper, .daysWrapper {
+    gap: var(--table-spacing);
+    padding: var(--table-spacing);
 }
 
-.scheduleWrapper::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: #afaeae;
-}
-
-.scheduleWrapper::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: #7a7979;
-}
-
-.scheduleWrapper::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.dayMarker, .plug {
+.daysWrapper, .plug {
     background: #1537ab;
     position: sticky;
     left: 0;
+    z-index: 2;
 }
 
-.dayMarker {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.classIdsWrapper, .daysWrapper {
     font-size: 20px;
     color: white;
+}
+
+.daysWrapper, .schoolDayWrapper {
+    grid-template-rows: repeat(5, var(--table-item-height));
+}
+
+.classIdsWrapper {
+    grid-auto-flow: column;
+    grid-auto-columns: var(--table-item-width);
+    justify-items: center;
+    background-color: #4e60ea;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.daysWrapper {
+    justify-items: center;
+    align-items: center;
+}
+
+.schoolDayWrapper {
+    grid-auto-columns: var(--table-item-width);
+    grid-auto-flow: column;
 }
