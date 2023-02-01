@@ -1,0 +1,9 @@
+.classID {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e60ea;
+    color: white;
+    padding: 8px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,14 @@
+.schoolDay {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 8px;
+    background-color: white;
+}
+
+/*.lastClass {*/
+/*    margin-right: 10px;*/
+/*}*/

@@ -1,28 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-    .styled-scrollbar::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-    }
-
-    .styled-scrollbar::-webkit-scrollbar-track {
-        border-radius: 10px;
-        background: #afaeae;
-    }
-
-    .styled-scrollbar::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        background: #7a7979;
-    }
-
-    .styled-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 0, 0, 0.4);
-    }
-}
-
 * {
     padding: 0;
     margin: 0;
@@ -43,4 +18,24 @@ body {
 
 :focus, :active {
     outline: none;
+}
+
+
+.styled-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #afaeae;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #7a7979;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
 }

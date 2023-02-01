@@ -1,14 +1,20 @@
-import {WithChildren} from 'commonTypes/utility';
+import { SchoolWeekSchedule } from "commonTypes/dataTypes";
+import { SchoolDay } from "../schoolDay";
+import styles from './SchoolWeek.module.css';
 
 type SchoolWeekProps = {
   classID: string;
+  classWeekSchedule: SchoolWeekSchedule;
+  isLastClass: boolean;
 }
 
-export const SchoolWeek = ({classID, children}: WithChildren<SchoolWeekProps>) => {
+export const SchoolWeek = ({ classID, classWeekSchedule, isLastClass }: SchoolWeekProps) => {
+  console.log(isLastClass, classID);
+
   return (
-    <div className={'h-full w-72 flex flex-col shrink-0 row-span-2'}>
-      <div className={'h-10 bg-blue shrink-0 sticky top-0 flex justify-center items-center'}>{classID}</div>
-      {children}
-    </div>
+    <>
+      <div className={styles.classID}>{classID}</div>
+      {classWeekSchedule.map((lessons) => <SchoolDay lessons={lessons} isLastClass={isLastClass} />)}
+    </>
   );
 };
