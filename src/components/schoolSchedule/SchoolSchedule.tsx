@@ -1,4 +1,4 @@
-import { days, schedule } from '../../constants';
+import { days, schedule, teachers } from '../../constants';
 import { SchoolWeek } from '../schoolWeek';
 import styles from './SchoolSchedule.module.css';
 import clsx from "clsx";
@@ -7,6 +7,8 @@ import clsx from "clsx";
 export const SchoolSchedule = () => {
   const classes = Object.keys(schedule);
   const schoolDays = Object.values(schedule);
+
+  console.log(teachers);
 
   return (
     <div className={styles.container}>

@@ -20,8 +20,8 @@ export const SchoolDay = ({ lessons, backgroundColor }: SchoolDayProps) => {
             if (lessons[index]) {
               return (
                 <LessonSlot
-                  classRoomNumber={lessons[index]?.classRoomNumber.toString()}
-                  subjectName={lessons[index]?.subject.name}
+                  classRoomNumber={lessons[index]!.classRoomNumber.toString()}
+                  subjectName={lessons[index]!.subject.name}
                   index={index}
                 />
               );
@@ -29,19 +29,6 @@ export const SchoolDay = ({ lessons, backgroundColor }: SchoolDayProps) => {
             return <LessonSlot index={index} />;
           })
         }
-
-        {/*{lessons.map((item, index) => {*/}
-        {/*  if (item?.subject) {*/}
-        {/*    return (*/}
-        {/*      <LessonSlot*/}
-        {/*        classRoomNumber={item.classRoomNumber.toString()}*/}
-        {/*        index={index}*/}
-        {/*        subjectName={item.subject.name}*/}
-        {/*      />*/}
-        {/*    );*/}
-        {/*  }*/}
-        {/*  return <LessonSlot index={index} />;*/}
-        {/*})}*/}
       </div>
     );
   }

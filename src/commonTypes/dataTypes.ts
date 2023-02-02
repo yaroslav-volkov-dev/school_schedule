@@ -16,6 +16,8 @@ type TimeSlots =
 
 type TeacherWorkStatus = 'free' | 'busy';
 
+const a = [['free', 'free', 'free', 'free', 'free', 'free', 'free',], ['']];
+
 type TeacherWorkingSchedule = {
   [day in Days]: WorkingDaySchedule;
 }
